@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Deco Luxury Hotel & Residence Bandung</title>
+    <link rel="shortcut icon" href="Gambar/LogoHotelKu.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #5a94ff7e;
+            background-image: url('Gambar/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #5a94ff;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+
+        /* Hotel Content */
+        .hotel-content {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            color: white;
+        }
+
+        .hotel-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hotel-title h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Info Sections */
+        .info-section {
+            background-color: rgba(90, 148, 255, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .info-section h2 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+
+        /* Facilities */
+        .facilities {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .facility {
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* Back Button */
+        .back-button {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+
+        .back-button:hover {
+            color: #2e77ff;
+        }
+
+        /* Price Section */
+        .price-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .price-section h2 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(90, 148, 255, 0.9);
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .booking-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #2e77ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .booking-button:hover {
+            transform: translateY(-2px);
+            background-color: #1b5fd9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #5a94ff;
+            margin-top: 40px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        /* Gallery Container dan Slideshow */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .slideshow-container {
+            flex: 0 0 500px; /* Ukuran tetap untuk container slideshow */
+            position: relative;
+        }
+
+        .mySlides img {
+            width: 500px;
+            height: 500px; /* Membuat gambar menjadi persegi */
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Info Container */
+        .hotel-info {
+            flex: 1;
+            padding: 20px;
+            background-color: rgba(90, 148, 255, 0.9);
+            border-radius: 12px;
+            height: fit-content;
+        }
+
+        /* Sesuaikan dot-container */
+        .dot-container {
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: -40px;
+            width: 100%;
+        }
+
+        /* Tombol Next & Previous */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Dots/bullets/indicators */
+        .dot-container {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #2e77ff;
+        }
+
+        /* Animasi fade */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../_Bandung.html" class="back-button">← Kembali</a>
+        </div>
+    </header>
+
+    <div class="hotel-content">
+        <div class="hotel-title">
+            <h1>ART DECO LUXURY HOTEL & RESIDENCE BANDUNG ⭐⭐⭐⭐</h1>
+        </div>
+
+        <div class="gallery-container">
+            <!-- Slideshow Container -->
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="Gambar/Art Deco Luxury Hotel & Residence Bandung 1.jpg" alt="Art Deco Luxury Hotel & Residence Bandung 1">
+                </div>
+                <div class="mySlides fade">
+                    <img src="Gambar/Art Deco Luxury Hotel & Residence Bandung 2.jpg" alt="Art Deco Luxury Hotel & Residence Bandung 2">
+                </div>
+                <div class="mySlides fade">
+                    <img src="Gambar/Art Deco Luxury Hotel & Residence Bandung 3.jpg" alt="Art Deco Luxury Hotel & Residence Bandung 3">
+                </div>
+                <div class="mySlides fade">
+                    <img src="Gambar/Art Deco Luxury Hotel & Residence Bandung 4.jpg" alt="Art Deco Luxury Hotel & Residence Bandung 4">
+                </div>
+                <div class="mySlides fade">
+                    <img src="Gambar/Art Deco Luxury Hotel & Residence Bandung 5.jpg" alt="Art Deco Luxury Hotel & Residence Bandung 5">
+                </div>
+                <div class="mySlides fade">
+                    <img src="Gambar/Art Deco Luxury Hotel & Residence Bandung 6.jpg" alt="Art Deco Luxury Hotel & Residence Bandung 6">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+                
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                </div>
+            </div>
+
+            <!-- Hotel Info Container -->
+            <div class="hotel-info">
+                <div class="info-section">
+                    <h2>Tentang Hotel</h2>
+                    <p>Art Deco Luxury Hotel & Residence Bandung adalah hotel bintang 4 yang terletak strategis di pusat kota Bandung. Hotel ini menawarkan akomodasi modern dengan pemandangan kota yang menakjubkan. Dengan lokasi yang sempurna untuk bisnis maupun liburan, hotel ini menjadi pilihan ideal bagi para tamu yang mencari kenyamanan dan kemewahan.</p>
+                </div>
+
+                <div class="info-section">
+                    <h2>Fasilitas Hotel</h2>
+                    <div class="facilities">
+                        <div class="facility">✓ Kolam Renang</div>
+                        <div class="facility">✓ Restoran</div>
+                        <div class="facility">✓ Wifi Gratis</div>
+                        <div class="facility">✓ Gym Center</div>
+                        <div class="facility">✓ Meeting Room</div>
+                        <div class="facility">✓ Parkir Gratis</div>
+                        <div class="facility">✓ Room Service 24 Jam</div>
+                        <div class="facility">✓ Business Center</div>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <h2>Harga Kamar</h2>
+                    <p>Mulai dari Rp 850.000/malam</p>
+                </div>
+
+                <div class="booking-section">
+                    <h2>Tertarik untuk menginap?</h2>
+                    <p>Booking sekarang dan dapatkan penawaran spesial!</p>
+                    <a href="../Booking.html" target="_parent" class="booking-button">Booking Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 HotelKU.Kelompok 9 Pemograman Web Dasar.</p>
+    </footer>
+
+    <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+    }
+
+    // Menghapus interval timer otomatis
+    // setInterval(function() {
+    //     plusSlides(1);
+    // }, 5000);
+    </script>
+</body>
+</html>

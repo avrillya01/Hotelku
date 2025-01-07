@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogyakarta</title>
+    <link rel="shortcut icon" href="Gambar/LogoHotelKu.jpg" type="image/x-icon">
+    <style>
+        /* Reset dan Dasar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            background-color: #5a94ff7e;
+            background-image: url('Gambar/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #5a94ff;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+
+        /* Link Styles */
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            color: #2e77ff;
+            transform: scale(1.03);
+            transition: transform 0.6s;
+        }
+
+        /* Kota Section */
+        .kota_container {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 15px auto;
+            padding: 10px;
+            gap: 15px;
+        }
+
+        .kota_column {
+            flex: 1;
+            max-width: 200px;
+            padding: 8px;
+            border-radius: 12px;
+            background-color: #5a94ff;
+            text-align: center;
+        }
+
+        .kota_column:hover {
+            color: #080e1988;
+        }
+
+        /* Search Section */
+        .search-section {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        .search-section p {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .search-section input[type="text"] {
+            padding: 10px 20px;
+            width: 300px;
+            border-radius: 20px;
+            border: none;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .search-section button {
+            padding: 10px 25px;
+            border-radius: 20px;
+            border: none;
+            background-color: #5a94ff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Results Section */
+        .results-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .results-section > p {
+            width: 100%;
+            font-size: 24px;
+            margin: 0 0 15px 0;
+            text-align: left;
+        }
+
+        .destination {
+            flex: 0 0 calc(33.33% - 20px);
+            max-width: 300px;
+            margin: 0;
+            padding: 15px;
+            background-color: rgba(90, 148, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .destination h1 {
+            font-size: 1em;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .destination:hover {
+            transform: scale(1.03);
+            transition: transform 0.6s;
+        }
+
+        /* Gallery */
+        .gallery {
+            margin: 10px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Tambahkan style untuk modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: 50px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .modal-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .modal-images img {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-images img:hover {
+            transform: scale(1.05);
+        }
+
+        .close {
+            color: #fff;
+            position: absolute;
+            right: 25px;
+            top: 10px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #5a94ff;
+            margin-top: 40px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        /* Logo style */
+        .container p {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .container img {
+            width: 24px;
+            margin-right: 8px;
+        }
+
+        /* Nama hotel */
+        .destination p {
+            margin: 8px 0 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .kota_column h2 {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        /* Style untuk slideshow dalam kolom */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .slides {
+            display: none;
+        }
+
+        .slides img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Tombol Next & Previous */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 3px;
+            user-select: none;
+            text-decoration: none;
+        }
+
+        .prev {
+            left: 5px;
+        }
+
+        .next {
+            right: 5px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Animasi fade */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        /* Tambahkan style untuk link hotel */
+        .destination a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .destination a:hover {
+            color: #e0e0e0;
+        }
+
+        /* Pastikan tombol prev/next tetap bisa diklik */
+        .prev, .next {
+            z-index: 2;  /* Tambahkan z-index */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <p style="font-size: 27px;">
+                <img src="Gambar/.Logo HotelKu.png" style="float: left;" width="28px">
+                <b>HotelKu</b>
+            </p>
+            <nav>
+                <ul style="font-size: 19px; font-style: italic;">
+                    <li><a href="Hotel Ku.html">Beranda</a></li>
+                    <li><a href="Login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <p style="font-size: 30px;"><b style="font-style: italic;">Temukan Hotel Terbaik Anda!</b></p>
+            <div class="kota_container">
+                <div class="kota_column">
+                    <a href="_Purwakarta.html" target="_parent"><h2>Purwakarta</h2></a>
+                </div>
+                <div class="kota_column">
+                    <a href="_Bandung.html" target="_parent"><h2>Bandung</h2></a>
+                </div>
+                <div class="kota_column">
+                    <a href="_Jakarta.html" target="_parent"><h2>Jakarta</h2></a>
+                </div>
+            </div>
+            <input type="text" id="search" placeholder="Mau Ke Hotel Mana?">
+            <button onclick="search()">Cari</button>
+        </section>
+
+        <section class="results-section">
+            <p style="font-size: 30px;"><b>Hotel di Yogyakarta</b></p>
+            
+            <!-- The Phoenix Hotel -->
+            <div class="destination">
+                <a href="Hotel Yogyakarta/phoenix.html" target="_parent">
+                    <h1>THE PHOENIX HOTEL YOGYAKARTA<br>⭐⭐⭐⭐⭐</h1>
+                    <div class="slideshow-container">
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 1.jpg" alt="The Phoenix Yogyakarta 1">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 2.jpg" alt="The Phoenix Yogyakarta 2">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 3.jpg" alt="The Phoenix Yogyakarta 3">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 4.jpg" alt="The Phoenix Yogyakarta 4">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 5.jpg" alt="The Phoenix Yogyakarta 5">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 6.jpg" alt="The Phoenix Yogyakarta 6">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 7.jpg" alt="The Phoenix Yogyakarta 7">
+                        </div>
+                        <div class="slides fade">
+                            <img src="Gambar/The Phoenix Hotel Yogyakarta 8.jpg" alt="The Phoenix Yogyakarta 8">
+                        </div>
+                        <a class="prev" onclick="plusSlides(this.parentElement, -1); event.preventDefault();">❮</a>
+                        <a class="next" onclick="plusSlides(this.parentElement, 1); event.preventDefault();">❯</a>
+                    </div>
+                    <p>The Phoenix Hotel Yogyakarta</p>
+                </a>
+            </div>
+
+            <!-- Prime Plaza Hotel -->
+            <div class="destination">
+                <a href="Hotel Yogyakarta/zuri.html" target="_parent">
+                <h1>GRAND ZURI MALIOBORO HOTEL YOGYAKARTA<br>⭐⭐⭐⭐</h1>
+                <div class="slideshow-container">
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 1.jpg" alt="Grand Zuri 1">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 2.jpg" alt="Grand Zuri 2">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 3.jpg" alt="Grand Zuri 3">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 4.jpg" alt="Grand Zuri 4">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 5.jpg" alt="Grand Zuri 5">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 6.jpg" alt="Grand Zuri 6">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Grand Zuri Malioboro 7.jpg" alt="Grand Zuri 7">
+                    </div>
+                    <a class="prev" onclick="plusSlides(this.parentElement, -1)">❮</a>
+                    <a class="next" onclick="plusSlides(this.parentElement, 1)">❯</a>
+                </div>
+                <p>Grand Zuri Malioboro Hotel Yogyakarta</p>
+            </div>
+
+            <!-- Jatiluhur Valley Resort -->
+            <div class="destination">
+                <a href="Hotel Yogyakarta/alana.html" target="_parent">
+                <h1>THE ALANA YOGYAKARTA HOTEL AND CONVENTION CENTER<br>⭐⭐⭐⭐</h1>
+                <div class="slideshow-container">
+                    <div class="slides fade">
+                        <img src="Gambar/The Alana Hotel & Cofenrence Yogyakarta 1.jpg" alt="The Alana Hotel & Cofenrence Yogyakarta 1">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Alana Hotel & Cofenrence Yogyakarta 2.jpg" alt="The Alana Hotel & Cofenrence Yogyakarta 2">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Alana Hotel & Cofenrence Yogyakarta 3.jpg" alt="The Alana Hotel & Cofenrence Yogyakarta 3">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Alana Hotel & Cofenrence Yogyakarta 4.jpg" alt="The Alana Hotel & Cofenrence Yogyakarta 4">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Alana Hotel & Cofenrence Yogyakarta 5.jpg" alt="The Alana Hotel & Cofenrence Yogyakarta 5">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Alana Hotel & Cofenrence Yogyakarta 6.jpg" alt="The Alana Hotel & Cofenrence Yogyakarta 6">
+                    </div>
+                    <a class="prev" onclick="plusSlides(this.parentElement, -1)">❮</a>
+                    <a class="next" onclick="plusSlides(this.parentElement, 1)">❯</a>
+                </div>
+                <p>The Alana Hotel and Convention Center</p>
+            </div>
+
+            <!-- Hidden Valley Hills -->
+            <div class="destination">
+                <a href="Hotel Yogyakarta/saphir.html" target="_parent">
+                <h1>HOTEL NEW SAPHIR YOGYAKARTA<br>⭐⭐⭐⭐</h1>
+                <div class="slideshow-container">
+                    <div class="slides fade">
+                        <img src="Gambar/Hotel New Saphir Yogyakarta 1.jpg" alt="Hotel New Saphir Yogyakarta 1">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Hotel New Saphir Yogyakarta 2.jpg" alt="Hotel New Saphir Yogyakarta 2">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Hotel New Saphir Yogyakarta 3.jpg" alt="Hotel New Saphir Yogyakarta 3">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Hotel New Saphir Yogyakarta 4.jpg" alt="Hotel New Saphir Yogyakarta 4">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Hotel New Saphir Yogyakarta 5.jpg" alt="Hotel New Saphir Yogyakarta 5">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/Hotel New Saphir Yogyakarta 6.jpg" alt="Hotel New Saphir Yogyakarta 6">
+                    </div>
+                    <a class="prev" onclick="plusSlides(this.parentElement, -1)">❮</a>
+                    <a class="next" onclick="plusSlides(this.parentElement, 1)">❯</a>
+                </div>
+                <p>Hotel New Saphir Yogyakarta</p>
+            </div>
+
+            <!-- Villa Tepi Sawah -->
+            <div class="destination">
+                <a href="Hotel Yogyakarta/victoria.html" target="_parent">
+                <h1>THE VICTORIA HOTEL YOGYAKARTA<br>⭐⭐⭐</h1>
+                <div class="slideshow-container">
+                    <div class="slides fade">
+                        <img src="Gambar/The Victoria Hotel Yogyakarta 1.jpg" alt="The Victoria Hotel Yogyakarta 1">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Victoria Hotel Yogyakarta 2.jpg" alt="The Victoria Hotel Yogyakarta 2">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Victoria Hotel Yogyakarta 3.jpg" alt="The Victoria Hotel Yogyakarta 3">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Victoria Hotel Yogyakarta 4.jpg" alt="The Victoria Hotel Yogyakarta 4">
+                    </div>
+                    <div class="slides fade">
+                        <img src="Gambar/The Victoria Hotel Yogyakarta 5.jpg" alt="The Victoria Hotel Yogyakarta 5">
+                    </div>
+                    <a class="prev" onclick="plusSlides(this.parentElement, -1)">❮</a>
+                    <a class="next" onclick="plusSlides(this.parentElement, 1)">❯</a>
+                </div>
+                <p>The Victoria Hotel Yogyakarta</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HotelKu.Kelompok 9 Pemograman Web Dasar.</p>
+    </footer>
+
+    <script>
+        function search() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const destinations = document.querySelectorAll('.destination');
+            let found = false;
+
+            // Data hotel yang tersedia
+            const hotels = [
+                {
+                    name: "the phoenix hotel yogyakarta",
+                    keywords: ["phoenix", "hotel phoenix", "yogyakarta", "hotel yogyakarta", "the phoenix"]
+                },
+                {
+                    name: "grand zuri malioboro hotel yogyakarta",
+                    keywords: ["grand zuri", "malioboro", "yogyakarta", "hotel zuri", "zuri malioboro"]
+                },
+                {
+                    name: "the alana hotel & cofenrence yogyakarta",
+                    keywords: ["alana", "hotel alana", "yogyakarta", "convention center", "the alana"]
+                },
+                {
+                    name: "hotel new saphir yogyakarta",
+                    keywords: ["saphir", "new saphir", "yogyakarta", "hotel saphir", "hotel new"]
+                },
+                {
+                    name: "the victoria hotel yogyakarta",
+                    keywords: ["victoria", "hotel victoria", "yogyakarta", "the victoria", "victoria hotel"]
+                }
+            ];
+
+            destinations.forEach(destination => {
+                const hotelName = destination.querySelector('h1').textContent.toLowerCase();
+                let shouldShow = false;
+
+                // Cek apakah input pencarian cocok dengan nama hotel atau kata kunci
+                hotels.forEach(hotel => {
+                    if (hotel.name.includes(searchInput) || 
+                        hotel.keywords.some(keyword => keyword.includes(searchInput))) {
+                        if (hotelName.includes(hotel.name)) {
+                            shouldShow = true;
+                            found = true;
+                        }
+                    }
+                });
+
+                // Tampilkan atau sembunyikan hotel berdasarkan hasil pencarian
+                destination.style.display = shouldShow ? 'block' : 'none';
+            });
+
+            // Tampilkan pesan jika tidak ada hasil
+            const noResultsMsg = document.getElementById('noResults');
+            if (!found && searchInput !== '') {
+                if (!noResultsMsg) {
+                    const msg = document.createElement('p');
+                    msg.id = 'noResults';
+                    msg.style.textAlign = 'center';
+                    msg.style.color = '#ffffff';
+                    msg.style.fontSize = '18px';
+                    msg.style.marginTop = '20px';
+                    msg.textContent = 'Tidak ada hotel yang ditemukan';
+                    document.querySelector('.results-section').appendChild(msg);
+                }
+            } else if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        }
+
+        // Tambahkan event listener untuk input pencarian
+        document.getElementById('search').addEventListener('input', search);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const destinations = document.querySelectorAll('.destination');
+            const modal = document.getElementById('galleryModal');
+            const modalImages = modal.querySelector('.modal-images');
+            const closeBtn = modal.querySelector('.close');
+
+            destinations.forEach(destination => {
+                const mainImage = destination.querySelector('.gallery img');
+                const allImages = destination.querySelectorAll('.gallery img');
+
+                mainImage.addEventListener('click', () => {
+                    modalImages.innerHTML = '';
+                    allImages.forEach(img => {
+                        const newImg = document.createElement('img');
+                        newImg.src = img.src;
+                        newImg.alt = img.alt;
+                        modalImages.appendChild(newImg);
+                    });
+                    modal.style.display = 'block';
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Inisialisasi slideshow untuk setiap destination
+        document.addEventListener('DOMContentLoaded', function() {
+            let slideshows = document.querySelectorAll('.slideshow-container');
+            slideshows.forEach(function(slideshow) {
+                showSlides(slideshow, 1);
+            });
+        });
+
+        function plusSlides(container, n) {
+            let slideIndex = parseInt(container.getAttribute('data-slide-index') || 1);
+            showSlides(container, slideIndex + n);
+        }
+
+        function showSlides(container, n) {
+            let slides = container.getElementsByClassName("slides");
+            if (!slides.length) return;
+            
+            if (n > slides.length) n = 1;
+            if (n < 1) n = slides.length;
+            
+            // Sembunyikan semua slides
+            for (let slide of slides) {
+                slide.style.display = "none";
+            }
+            
+            // Tampilkan slide yang aktif
+            slides[n-1].style.display = "block";
+            container.setAttribute('data-slide-index', n);
+        }
+    </script>
+
+    <div id="galleryModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <div class="modal-images"></div>
+        </div>
+    </div>
+</body>
+</html>

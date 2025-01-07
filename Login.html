@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HotelKu</title>
+    <link rel="shortcut icon" href="Gambar/LogoHotelKu.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('Gambar/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .login-container {
+            background-color: #2e77ff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 350px;
+            color: white;
+        }
+        /* 2e77ff */
+        /* 5a94ffe6 */
+        .login-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .login-header img {
+            width: 50px;
+            margin-bottom: 15px;
+        }
+
+        .login-header h2 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #5a94ffe6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #1b5fd9;
+            transform: translateY(-2px);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .register-link p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .register-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            padding: 10px 20px;
+            background-color: #5a94ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #2e77ff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <a href="Hotel Ku.html" class="back-button">Kembali</a>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <img src="Gambar/LogoHotelKu.jpg" alt="HotelKu Logo">
+            <h2>Login HotelKu</h2>
+        </div>
+        
+        <form id="loginForm" onsubmit="return validateLogin(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        
+        <div class="register-link">
+            <p>Belum punya akun? <a href="#">Daftar disini</a></p>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Contoh validasi sederhana
+            if (username === "admin" && password === "admin123") {
+                alert("Login berhasil!");
+                window.location.href = "Hotel Ku.html";
+                return true;
+            } else {
+                alert("Username atau password salah!");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

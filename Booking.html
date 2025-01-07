@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Hotel</title>
+    <link rel="shortcut icon" href="Gambar/LogoHotelKu.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .booking-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .booking-header {
+            background: #1e3c72;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .booking-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .booking-form {
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: #1e3c72;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+
+        .back-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animasi loading saat submit */
+        .loading {
+            position: relative;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin: -10px 0 0 -10px;
+            border: 3px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: loading 0.8s linear infinite;
+        }
+
+        @keyframes loading {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .booking-container {
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+
+            .booking-form {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-header">
+            <a href="javascript:history.back()" class="back-button">← Kembali</a>
+            <h1>Reservasi Hotel</h1>
+        </div>
+
+        <form class="booking-form" id="bookingForm" onsubmit="return validateForm()">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="contoh@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telepon">Nomor Telepon</label>
+                    <input type="tel" id="telepon" name="telepon" required placeholder="08xxxxxxxxxx">
+                </div>
+
+                <div class="form-group">
+                    <label for="tipeKamar">Tipe Kamar</label>
+                    <select id="tipeKamar" name="tipeKamar" required>
+                        <option value="">Pilih Tipe Kamar</option>
+                        <option value="standard">Standard Room</option>
+                        <option value="deluxe">Deluxe Room</option>
+                        <option value="suite">Suite Room</option>
+                        <option value="executive">Executive Suite</option>
+                        <option value="presidential">Presidential Suite</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkIn">Check-in</label>
+                    <input type="date" id="checkIn" name="checkIn" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkOut">Check-out</label>
+                    <input type="date" id="checkOut" name="checkOut" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlahTamu">Jumlah Tamu</label>
+                    <input type="number" id="jumlahTamu" name="jumlahTamu" min="1" max="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlahKamar">Jumlah Kamar</label>
+                    <input type="number" id="jumlahKamar" name="jumlahKamar" min="1" max="5" required>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Konfirmasi Reservasi</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const checkIn = new Date(document.getElementById('checkIn').value);
+            const checkOut = new Date(document.getElementById('checkOut').value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (checkIn < today) {
+                alert('Tanggal check-in tidak boleh kurang dari hari ini!');
+                return false;
+            }
+
+            if (checkOut <= checkIn) {
+                alert('Tanggal check-out harus lebih besar dari tanggal check-in!');
+                return false;
+            }
+
+            // Animasi loading
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('loading');
+            
+            // Simulasi proses booking
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                alert('Reservasi berhasil! Kami akan mengirimkan konfirmasi melalui email.');
+            }, 1500);
+
+            return false; // Prevent form submission for demo
+        }
+
+        // Set minimum date untuk input tanggal
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkIn').min = today;
+        document.getElementById('checkOut').min = today;
+
+        // Validasi input nomor telepon
+        document.getElementById('telepon').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
